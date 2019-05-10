@@ -96,15 +96,15 @@ namespace AcmeCorporation.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Serial")] DrawEntry drawEntry)
+        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Serial,Age")] DrawEntry drawEntry)
         {
-            if (ModelState.IsValid & IsSerialAsync(drawEntry.Serial).Result)
+            if (ModelState.IsValid & IsSerialAsync(drawEntry.Serial).Result & drawEntry.Age >= 18)
             {
                 _context.Add(drawEntry);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Error"] = "You submission have not been accepted";
+            ViewData["Error"] = "Your submission have not been accepted";
             return View(drawEntry);
         }
 

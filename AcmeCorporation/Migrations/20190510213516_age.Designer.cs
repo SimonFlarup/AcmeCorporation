@@ -4,14 +4,16 @@ using AcmeCorporation.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AcmeCorporation.Migrations
 {
     [DbContext(typeof(AcmeCorporationContext))]
-    partial class AcmeCorporationContextModelSnapshot : ModelSnapshot
+    [Migration("20190510213516_age")]
+    partial class age
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -25,6 +25,9 @@ namespace AcmeCorporation.Models
         [EmailAddress]
         public String Email { get; set; }
         [Required]
+        [Range(0, 125)] //Oldest recorded person was 116
+        public int Age { get; set; }
+        [Required]
         [RegularExpression(@"ACME#[0-5][0-9]-(0[1-9]|1[0-2])(0[1-9]|1[0-4]|[4-9][0-9])-[WR]", ErrorMessage = "Invalid serial - Format is ACME#-XX-XXXX-Y <br>X is a number and Y is a letter")]
         [StringLength(14)]
         public String Serial { get; set; }
