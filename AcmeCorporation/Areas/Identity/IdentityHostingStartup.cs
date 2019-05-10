@@ -22,7 +22,10 @@ namespace AcmeCorporation.Areas.Identity
                 services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<AcmeCorporationContext>()
                     .AddDefaultTokenProviders();
+
+                services.ConfigureApplicationCookie(options => options.LoginPath = "/Identity/Account/Login");
             });
+
         }
     }
 }

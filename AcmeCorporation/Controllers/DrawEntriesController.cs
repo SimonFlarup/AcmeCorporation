@@ -86,7 +86,6 @@ namespace AcmeCorporation.Controllers
         }
 
         // GET: DrawEntries/Create
-        [Authorize]
         public IActionResult Create()
         {
             return View();
