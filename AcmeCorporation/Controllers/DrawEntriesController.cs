@@ -94,7 +94,7 @@ namespace AcmeCorporation.Controllers
         // POST: DrawEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Serial,Age")] DrawEntry drawEntry)
         {
@@ -102,10 +102,13 @@ namespace AcmeCorporation.Controllers
             {
                 _context.Add(drawEntry);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                ViewData["Error"] = "Your submission have been accepted";
             }
-            ViewData["Error"] = "Your submission have not been accepted";
-            return View(drawEntry);
+            ViewData["Success"] = "Your submission have not been accepted";
+            return Json("Testing");
+            //return "Error";
+            //return View(drawEntry);
         }
 
         // GET: DrawEntries/Edit/5
@@ -123,7 +126,7 @@ namespace AcmeCorporation.Controllers
                 return NotFound();
             }
             return View(drawEntry);
-        }
+        }*/
 
         // POST: DrawEntries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
