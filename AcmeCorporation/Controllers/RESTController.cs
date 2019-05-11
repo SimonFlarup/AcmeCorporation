@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AcmeCorporation.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AcmeCorporation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/rest")]
     [ApiController]
     public class RESTController : ControllerBase
     {
@@ -60,20 +61,18 @@ namespace AcmeCorporation.Controllers
             return NoContent();
         }
 
-        // POST: Api/REST/Create
+        // POST: api/rest/
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Serial,Age")] DrawEntry drawEntry)
+        public async Task<IActionResult> PostDrawEntry([FromForm] [Bind("ID,FirstName,LastName,Email,Serial,Age")] DrawEntry drawEntry)
         {
             if (ModelState.IsValid & IsSerialAsync(drawEntry.Serial).Result & drawEntry.Age >= 18)
             {
-                _context.Add(drawEntry);
+                _context.DrawEntry.Add(drawEntry);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
+                return StatusCode(201);
             }
-            return NoContent();
-            //return "Error";
-            //return View(drawEntry);
+            return StatusCode(400);
         }
     }
 }

@@ -26,9 +26,21 @@ namespace AcmeCorporation.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Submissions()
+        public async Task<IActionResult> Submissions(int page = 0)
         {
-            return View(await _context.DrawEntry.ToListAsync());
+            const int PageSize = 10; // you can always do something more elegant to set this
+
+            var dataSource = await _context.DrawEntry.ToListAsync();
+
+            var count = dataSource.Count();
+
+            var data = dataSource.OrderBy(o => o.ID).Skip(page * PageSize).Take(PageSize).ToList();
+
+            this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+            this.ViewBag.Page = page;
+
+            return this.View(data);
         }
 
         // GET: DrawEntries/Details/5
