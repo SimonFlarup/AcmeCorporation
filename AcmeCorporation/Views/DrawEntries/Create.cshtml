@@ -61,10 +61,9 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
 <script>
-        // this is the id of the form
         $("#draw_form").submit(function (e) {
 
-            e.preventDefault(); // avoid to execute the actual submit of the form.
+            e.preventDefault();
 
             var form = $(this);
             var url = form.attr('action');
@@ -72,7 +71,7 @@
             $.ajax({
                 type: "POST",
                 url: url,
-                data: form.serialize(), // serializes the form's elements.
+                data: form.serialize(),
                 success: function () {
                     document.getElementById("alert_warning").style.display = "none";
                     document.getElementById("alert_success").style.display = "block";

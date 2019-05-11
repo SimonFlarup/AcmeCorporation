@@ -28,7 +28,7 @@ namespace AcmeCorporation.Controllers
         [Authorize]
         public async Task<IActionResult> Submissions(int page = 0)
         {
-            const int PageSize = 10; // you can always do something more elegant to set this
+            const int PageSize = 10;
 
             var dataSource = await _context.DrawEntry.ToListAsync();
 
@@ -103,6 +103,7 @@ namespace AcmeCorporation.Controllers
             return View();
         }
 
+        // The following action has been replaced with a webAPI available in RESTController
         // POST: DrawEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

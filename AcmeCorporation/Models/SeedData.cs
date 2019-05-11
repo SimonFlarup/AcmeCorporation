@@ -14,11 +14,10 @@ namespace AcmeCorporation.Models
                 serviceProvider.GetRequiredService<
                     DbContextOptions<AcmeCorporationContext>>()))
             {
-                // Look for any movies.
                 if (context.Serial.Any())
                 {
                     Console.WriteLine("DB has been seeded");
-                    return;   // DB has been seeded
+                    return;
                 }
 
                 var Movies = from m in context.Movie
