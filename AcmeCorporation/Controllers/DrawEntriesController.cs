@@ -26,9 +26,21 @@ namespace AcmeCorporation.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Submissions()
+        public async Task<IActionResult> Submissions(int page = 0)
         {
-            return View(await _context.DrawEntry.ToListAsync());
+            const int PageSize = 10;
+
+            var dataSource = await _context.DrawEntry.ToListAsync();
+
+            var count = dataSource.Count();
+
+            var data = dataSource.OrderBy(o => o.ID).Skip(page * PageSize).Take(PageSize).ToList();
+
+            this.ViewBag.MaxPage = (count / PageSize) - (count % PageSize == 0 ? 1 : 0);
+
+            this.ViewBag.Page = page;
+
+            return this.View(data);
         }
 
         // GET: DrawEntries/Details/5
@@ -91,10 +103,11 @@ namespace AcmeCorporation.Controllers
             return View();
         }
 
+        // The following action has been replaced with a webAPI available in RESTController
         // POST: DrawEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Email,Serial,Age")] DrawEntry drawEntry)
         {
@@ -102,10 +115,13 @@ namespace AcmeCorporation.Controllers
             {
                 _context.Add(drawEntry);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                ViewData["Error"] = "Your submission have been accepted";
             }
-            ViewData["Error"] = "Your submission have not been accepted";
-            return View(drawEntry);
+            ViewData["Success"] = "Your submission have not been accepted";
+            return Json("Testing");
+            //return "Error";
+            //return View(drawEntry);
         }
 
         // GET: DrawEntries/Edit/5
@@ -123,7 +139,7 @@ namespace AcmeCorporation.Controllers
                 return NotFound();
             }
             return View(drawEntry);
-        }
+        }*/
 
         // POST: DrawEntries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

@@ -11,7 +11,7 @@ namespace Acme
         {
         }
         //Generates a serialnumber from the supplied movies number, release month and year prefixed with ACME# and postfixed with either W or R
-        //Result passes regex: ACME+#[0-9]-(0[1-9]|1[0-2])[0-9]{2}-[WR]
+        //Result passes regex: ACME#[0-5][0-9]-(0[1-9]|1[0-2])(0[1-9]|1[0-4]|[4-9][0-9])-[WR]
         public static String[] Generate(Movie movie)
         {
             String[] ReturnString = new String[2];
