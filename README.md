@@ -25,7 +25,7 @@ _Tutorial: Create a web API with ASP.NET Core MVC_<br>
 https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&tabs=visual-studio<br>
 
 ## Implementation
-TODO
+The application consists of a ASP.NET Core MVC webpage with views as Razor pages. It has three controllers, one for frontpage and privacy one for the draw CRUD and another for movie CRUD. The valid serial numbers are generated from the list of episodes from the Looney Tunes *Wile E. Coyote and the Road Runner*. The application has implemented Identity/Authentication through scaffolding and has been limited to Login, Logout and Register. The Identity pages are not implemented as MVC but through Razor Pages with PageModels. The application also includes a REST api for the creation of new draw entries using a AJAX call.
 
 ## Setting up
 Make sure to download the latest .NET Core (v2.2) from https://dotnet.microsoft.com/download (Beware! If you're using Visual Studio 17 not all versions are compatiable)
