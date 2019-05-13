@@ -16,9 +16,9 @@
 
         <div id="alert_warning" class="alert alert-warning" role="alert" style="display: none;">Your submission have not been accepted</div>
         <div id="alert_success" class="alert alert-success" role="alert" style="display: none;">Your submission have been accepted</div>
-
-        <div id="return_result">
-        </div>
+        <br />
+        <p>Be sure to enter all informations in this form! <br /> We reserve the rights to distribute your email address with running mail<br /><br /><b>Good luck!</b></p>
+        <br />
         <form action="~/api/rest" method="POST" id="draw_form">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -47,14 +47,14 @@
                 <span asp-validation-for="Serial" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Go Back</a>
 </div>
 
 @section Scripts {
